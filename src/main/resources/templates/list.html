@@ -7,10 +7,11 @@
     <div th:replace="fragments :: page-header"></div>
 
     <div class="container body-content">
-        <p>View jobs by:</p>
+        <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+        <h2>View All</h2>
         <ul>
-            <li th:each="action : ${actions}">
-                <a th:href="@{'/' + ${action.key}}" th:text="${action.value}"></a>
+            <li th:each="column : ${columns}">
+                <a th:href="@{/list/values(column=${column.key})}" th:text="${column.value}"></a>
             </li>
         </ul>
     </div>
