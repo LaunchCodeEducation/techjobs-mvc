@@ -37,7 +37,15 @@
     <hr />
 
     <!-- TODO #2 - Loop over jobs map to display all job fields -->
+    <div th:if="${jobs} and ${jobs.size()}">
 
+        <table>
+            <tr th:each="job, idx : ${jobs}" th:class="${idx.odd} ? 'odd'">
+                <td><a th:href="@{/search/results(column=${column},value=${job})}" th:text="${job}"></a></td>
+            </tr>
+        </table>
+
+    </div>
 </div>
 
 </body>

@@ -30,6 +30,7 @@ public class JobData {
      * @return List of all of the values of the given field
      */
     public static ArrayList<String> findAll(String field) {
+        System.out.println("JD.33.field.toString() = " + field.toString());
 
         // load data, if not already loaded
         loadData();
@@ -38,7 +39,7 @@ public class JobData {
 
         for (HashMap<String, String> row : allJobs) {
             String aValue = row.get(field);
-
+            System.out.println("JD.41.aValue = " + aValue);
             if (!values.contains(aValue)) {
                 values.add(aValue);
             }
@@ -46,7 +47,7 @@ public class JobData {
 
         // Bonus mission: sort the results
         Collections.sort(values);
-
+        System.out.println("JD.49.values = " + values);
         return values;
     }
 
@@ -56,6 +57,7 @@ public class JobData {
         loadData();
 
         // Bonus mission; normal version returns allJobs
+        System.out.println("JD.59.allJobs == " + allJobs.toArray());
         return new ArrayList<>(allJobs);
     }
 
@@ -80,7 +82,7 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
-
+            System.out.println("JD.84.aValue.toString() = " + aValue.toString());
             if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }
@@ -106,7 +108,7 @@ public class JobData {
 
             for (String key : row.keySet()) {
                 String aValue = row.get(key);
-
+                System.out.println("JD.110.aValue.toString() = " + aValue.toString());
                 if (aValue.toLowerCase().contains(value.toLowerCase())) {
                     jobs.add(row);
 
@@ -126,6 +128,7 @@ public class JobData {
 
         // Only load data once
         if (isDataLoaded) {
+            System.out.println("JD.130.DataLoaded = true");
             return;
         }
 
