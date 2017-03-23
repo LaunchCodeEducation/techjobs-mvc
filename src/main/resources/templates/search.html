@@ -43,8 +43,8 @@
 
         <div th:each="job : ${jobs}">
             <table class="job-listing">
-                <tbody th:each="k : ${job}">
-                    <tr>
+                <tbody>
+                    <tr th:each="k, idx : ${job}" th:class="${idx.odd} ? 'odd'">
                         <td th:text="${#strings.capitalizeWords(k.key)}"></td>
                         <td th:text="${k.value}"></td>
                     </tr>
