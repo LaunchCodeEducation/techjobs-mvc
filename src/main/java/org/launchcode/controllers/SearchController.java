@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import static org.launchcode.controllers.ListController.columnChoices;
 
@@ -23,8 +24,6 @@ public class SearchController {
     @RequestMapping(value = "")
     public String search(Model model) {
         model.addAttribute("columns", columnChoices);
-        System.out.println("SC.24.model = " + model);
-        System.out.println("SC.25.columnChoices = " + columnChoices);
         return "search";
     }
 
@@ -33,12 +32,27 @@ public class SearchController {
     @RequestMapping(value = "results")
     public String search(Model model, @RequestParam String searchType, String searchTerm) {
         model.addAttribute("columns", ListController.columnChoices);
-        System.out.println("SC.37.searchType == " + searchType + " & searchTerm == " + searchTerm);
-        ArrayList<HashMap<String, String>> jobs = JobData.findByColumnAndValue(searchType, searchTerm);
-        for(Object job : jobs){
-            System.out.println("SC.39.job in jobs = " + job.toString());
+
+        if(searchTerm.matches("[a-zA-Z ]+")){
+            if(searchType.equals("all")){
+                ArrayList<HashMap<String, String>> jobs = JobData.findByValue(searchTerm);
+                model.addAttribute("jobs", jobs);
+            } else {
+                ArrayList<HashMap<String, String>> jobs = JobData.findByColumnAndValue(searchType, searchTerm);
+                model.addAttribute("jobs", jobs);
+            }
+            //model.addAttribute("jobs", jobs);
+        } else {
+            model.addAttribute("message", "Please input a search term.");
         }
-        model.addAttribute("jobs", jobs);
+
+//        for (HashMap<String, String> row : jobs) {
+//            for(Map.Entry<String, String> e : row.entrySet()){
+//                System.out.println(e.getKey() + ": " + e.getValue());
+//            }
+//        System.out.println("*****");  // separator for every job
+//        }
+
         return "search";
     }
 

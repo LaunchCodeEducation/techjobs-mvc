@@ -82,7 +82,7 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
-            System.out.println("JD.84.aValue.toString() = " + aValue.toString());
+            //System.out.println("JD.84.aValue.toString() = " + aValue.toString());
             if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }
