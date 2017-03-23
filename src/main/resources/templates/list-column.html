@@ -9,6 +9,8 @@
 <div class="container body-content">
 
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+    <h3 th:if="${items} and ${items.size()}" th:text="${items.size()} + ' Result(s)'"></h3>
+    <h3 th:unless="${items} and ${items.size()}" th:text="${items.size()} + ' Result(s)'"></h3>
 
     <div th:if="${items} and ${items.size()}">
 

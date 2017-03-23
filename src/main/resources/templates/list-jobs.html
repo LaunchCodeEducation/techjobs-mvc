@@ -9,6 +9,8 @@
 <div class="container body-content">
 
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+    <h3 th:if="${jobs} and ${jobs.size()}" th:text="${jobs.size()} + ' Result(s)'"></h3>
+    <h3 th:unless="${jobs} and ${jobs.size()}" th:text="${jobs.size()} + ' Result(s)'"></h3>
 
     <!-- TODO #3 - Use the same list display from search.html -->
     <div th:each="job : ${jobs}">

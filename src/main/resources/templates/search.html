@@ -35,15 +35,18 @@
     </form>
     <h1 th:text="${message}"></h1>
     <hr />
+    <h3 th:if="${jobs} and ${jobs.size()}" th:text="${jobs.size()} + ' Result(s)'"></h3>
+    <h3 th:unless="${jobs} and ${jobs.size()}" th:text="'0 Results'"></h3>
 
     <!-- TODO #2 - Loop over jobs map to display all job fields -->
     <div th:if="${jobs} and ${jobs.size()}">
 
         <div th:each="job : ${jobs}">
             <table class="job-listing">
-                <tbody>
+                <tbody th:each="k : ${job}">
                     <tr>
-                        <td th:="@{/search/results(column=${column.value},value=${job})}" th:text="${job}"></td>
+                        <td th:text="${#strings.capitalizeWords(k.key)}"></td>
+                        <td th:text="${k.value}"></td>
                     </tr>
                 </tbody>
             </table>
