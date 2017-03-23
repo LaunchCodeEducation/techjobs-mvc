@@ -13,16 +13,20 @@
     <h3 th:unless="${jobs} and ${jobs.size()}" th:text="${jobs.size()} + ' Result(s)'"></h3>
 
     <!-- TODO #3 - Use the same list display from search.html -->
-    <div th:each="job : ${jobs}">
-        <table class="job-listing">
-            <tbody>
-            <tr>
-                <td th:="@{/search/results(column=${column.value},value=${job})}" th:text="${job}"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <div th:if="${jobs} and ${jobs.size()}">
 
+        <div th:each="job : ${jobs}">
+            <table class="job-listing">
+                <tbody>
+                <tr th:each="j, idx : ${job}" th:class="${idx.odd} ? 'odd'">
+                    <td th:text="${#strings.capitalizeWords(j.key)}"></td>
+                    <td th:text="${j.value}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
 </div>
 
 </body>
