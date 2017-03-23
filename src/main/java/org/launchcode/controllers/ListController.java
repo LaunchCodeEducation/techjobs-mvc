@@ -28,7 +28,6 @@ public class ListController {
 
     @RequestMapping(value = "")
     public String list(Model model) {
-        System.out.println("LC.31.inside.list");
         model.addAttribute("columns", columnChoices);
         return "list";
     }
@@ -37,23 +36,15 @@ public class ListController {
     public String listColumnValues(Model model, @RequestParam String column) {
 
         if (column.equals("all")) {
-            System.out.println("LC.40.inside listColumnValues column.toString() = " + column.toString());
             ArrayList<HashMap<String, String>> jobs = JobData.findAll();
             model.addAttribute("title", "All Jobs");
             model.addAttribute("jobs", jobs);
-
-            for(Object job : jobs){
-                System.out.println("LC.46.inside loop listColumnValues" + job);
-            }
-            System.out.println("LC.48.inside listColumnValues" + jobs);
             return "list-jobs";
         } else {
-            System.out.println("LC.51.column.toString() = " + column.toString());
             ArrayList<String> items = JobData.findAll(column);
             model.addAttribute("title", "All " + columnChoices.get(column) + " Values");
             model.addAttribute("column", column);
             model.addAttribute("items", items);
-            System.out.println("LC.52.inside listColumnValues" + model.toString());
             return "list-column";
         }
 
@@ -66,8 +57,6 @@ public class ListController {
         ArrayList<HashMap<String, String>> jobs = JobData.findByColumnAndValue(column, value);
         model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
         model.addAttribute("jobs", jobs);
-        System.out.println("LC.64.jobs.toString() = " + jobs.toString());
-
         return "list-jobs";
     }
 }

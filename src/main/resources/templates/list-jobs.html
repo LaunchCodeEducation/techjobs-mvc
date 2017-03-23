@@ -21,10 +21,17 @@
                 <tr th:each="j, idx : ${job}" th:class="${idx.odd} ? 'odd'">
                     <td th:text="${#strings.capitalizeWords(j.key)}"></td>
                     <td>
+                        <span th:text="${j.value}" th:if="${#strings.containsIgnoreCase(title,j.value)}"></span>
+                        <span><a th:text="${j.value}" th:href="@{/list/jobs(column=${j.key},value=${j.value})}" th:unless="${#strings.containsIgnoreCase(title,j.value)}"></a></span>
+                    </td>
+                </tr>
+                <!-- // assignment says (except name) but that makes no sense
+                    // instead except the (title,j.value)
+                    <td>
                         <span th:text="${j.value}" th:if="${j.key} == 'name'"></span>
                         <span><a th:text="${j.value}" th:href="@{/list/jobs(column=${j.key},value=${j.value})}" th:unless="${j.key} == 'name'"></a></span>
                     </td>
-                </tr>
+                -->
                 </tbody>
             </table>
         </div>

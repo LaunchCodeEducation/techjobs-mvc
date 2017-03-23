@@ -19,6 +19,13 @@
                 <td><a th:href="@{/list/jobs(column=${column},value=${item})}" th:text="${item}"></a></td>
             </tr>
         </table>
+        <!--
+        <table>
+            <tr th:each="item, idx : ${items}" th:class="${idx.odd} ? 'odd'">
+                <td><a th:href="@{/list/jobs(column=${column},value=${item})}" th:text="${item}"></a></td>
+            </tr>
+        </table>
+        -->
 
     </div>
 

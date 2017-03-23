@@ -37,29 +37,17 @@ public class SearchController {
             if(searchType.equals("all")){
                 ArrayList<HashMap<String, String>> jobs = JobData.findByValue(searchTerm);
                 model.addAttribute("jobs", jobs);
-                System.out.println("SC.47.jobs.size() == " + jobs.size());
                 model.addAttribute("results_count", jobs.size());
             } else {
                 ArrayList<HashMap<String, String>> jobs = JobData.findByColumnAndValue(searchType, searchTerm);
                 model.addAttribute("jobs", jobs);
-                System.out.println("SC.47.jobs.size() == " + jobs.size());
                 if(jobs.size() >= 0){
                     model.addAttribute("results_count", jobs.size());
                 }
-
             }
         } else {
             model.addAttribute("message", "Please input a search term.");
         }
-
-
-//        for (HashMap<String, String> row : jobs) {
-//            for(Map.Entry<String, String> e : row.entrySet()){
-//                System.out.println(e.getKey() + ": " + e.getValue());
-//            }
-//        System.out.println("*****");  // separator for every job
-//        }
-
         return "search";
     }
 
