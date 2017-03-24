@@ -33,11 +33,36 @@
 
         <input type="submit" value="Search" />
     </form>
-
+    <h1 th:text="${message}"></h1>
     <hr />
+    <h3 th:if="${jobs} and ${jobs.size()}" th:text="${jobs.size()} + ' Result(s)'"></h3>
+    <h3 th:unless="${jobs} and ${jobs.size()}" th:text="'0 Results'"></h3>
 
     <!-- TODO #2 - Loop over jobs map to display all job fields -->
+    <div th:if="${jobs} and ${jobs.size()}">
 
+        <div th:each="job : ${jobs}">
+            <table class="job-listing" th:each="column : ${columns}">
+                <tbody>
+                    <tr th:each="j, idx : ${job}" th:class="${idx.odd} ? 'odd'">
+                        <!-- // assignment says (except name) but that makes no sense
+                            // instead except the (title,j.value)
+                        <td>
+                            <span th:text="${j.value}" th:if="${#strings.containsIgnoreCase(column.getKey(),j.value)}"></span>
+                            <span><a th:text="${j.value}" th:href="@{/list/jobs(column=${j.key},value=${j.value})}" th:unless="${#strings.containsIgnoreCase(column.getKey(),j.value)}"></a></span>
+                        </td>
+                        -->
+                        <td th:text="${#strings.capitalizeWords(j.key)}"></td>
+                        <td>
+                            <span th:text="${j.value}" th:if="${j.key} == 'name'"></span>
+                            <span><a th:text="${j.value}" th:href="@{/list/jobs(column=${j.key},value=${j.value})}" th:unless="${j.key} == 'name'"></a></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
 </div>
 
 </body>

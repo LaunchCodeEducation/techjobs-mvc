@@ -30,23 +30,18 @@ public class JobData {
      * @return List of all of the values of the given field
      */
     public static ArrayList<String> findAll(String field) {
-
-        // load data, if not already loaded
+         // load data, if not already loaded
         loadData();
 
         ArrayList<String> values = new ArrayList<>();
 
         for (HashMap<String, String> row : allJobs) {
             String aValue = row.get(field);
-
             if (!values.contains(aValue)) {
                 values.add(aValue);
             }
         }
-
-        // Bonus mission: sort the results
         Collections.sort(values);
-
         return values;
     }
 
@@ -55,7 +50,6 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        // Bonus mission; normal version returns allJobs
         return new ArrayList<>(allJobs);
     }
 
@@ -80,7 +74,6 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
-
             if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }
@@ -106,7 +99,6 @@ public class JobData {
 
             for (String key : row.keySet()) {
                 String aValue = row.get(key);
-
                 if (aValue.toLowerCase().contains(value.toLowerCase())) {
                     jobs.add(row);
 
