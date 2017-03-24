@@ -33,22 +33,34 @@ public class SearchController {
     public String search(Model model, @RequestParam String searchType, String searchTerm) {
         model.addAttribute("columns", ListController.columnChoices);
 
-        if(searchTerm.matches("[a-zA-Z ]+")){
-            if(searchType.equals("all")){
-                ArrayList<HashMap<String, String>> jobs = JobData.findByValue(searchTerm);
-                model.addAttribute("jobs", jobs);
-                model.addAttribute("results_count", jobs.size());
-            } else {
-                ArrayList<HashMap<String, String>> jobs = JobData.findByColumnAndValue(searchType, searchTerm);
-                model.addAttribute("jobs", jobs);
-                if(jobs.size() >= 0){
-                    model.addAttribute("results_count", jobs.size());
-                }
-            }
+        if(searchType.equals("all")){
+            ArrayList<HashMap<String, String>> jobs = JobData.findByValue(searchTerm);
+            model.addAttribute("jobs", jobs);
+            model.addAttribute("results_count", jobs.size());
         } else {
-            model.addAttribute("message", "Please input a search term.");
+            ArrayList<HashMap<String, String>> jobs = JobData.findByColumnAndValue(searchType, searchTerm);
+            model.addAttribute("jobs", jobs);
+            if(jobs.size() >= 0){
+                model.addAttribute("results_count", jobs.size());
+            }
         }
         return "search";
     }
+
+//        if(searchTerm.matches("[a-zA-Z ]+")){
+//            if(searchType.equals("all")){
+//                ArrayList<HashMap<String, String>> jobs = JobData.findByValue(searchTerm);
+//                model.addAttribute("jobs", jobs);
+//                model.addAttribute("results_count", jobs.size());
+//            } else {
+//                ArrayList<HashMap<String, String>> jobs = JobData.findByColumnAndValue(searchType, searchTerm);
+//                model.addAttribute("jobs", jobs);
+//                if(jobs.size() >= 0){
+//                    model.addAttribute("results_count", jobs.size());
+//                }
+//            }
+//        } else {
+//            model.addAttribute("message", "Please input a search term.");
+//        }
 
 }
