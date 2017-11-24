@@ -36,7 +36,18 @@
 
     <hr />
 
+    <h3 th:text="${listTitle}"></h3>
+
     <!-- TODO #2 - Loop over jobs map to display all job fields -->
+    <ul>
+        <li th:each="job : ${jobs}">
+            <span th:text="${job.name}"></span> :
+            <!-- <span th:text="${job.type}"></span> :: -->
+            <span th:text="${job.employer}"></span>,
+            <span th:text="${job.location}"></span>
+           <!-- [ <span th:text="${job.core}"></span> ]-->
+        </li>
+    </ul>
 
 </div>
 
