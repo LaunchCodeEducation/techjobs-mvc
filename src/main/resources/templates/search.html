@@ -39,15 +39,41 @@
     <h3 th:text="${listTitle}"></h3>
 
     <!-- TODO #2 - Loop over jobs map to display all job fields -->
-    <ul>
-        <li th:each="job : ${jobs}">
-            <span th:text="${job.name}"></span> :
-            <!-- <span th:text="${job.type}"></span> :: -->
-            <span th:text="${job.employer}"></span>,
-            <span th:text="${job.location}"></span>
-           <!-- [ <span th:text="${job.core}"></span> ]-->
-        </li>
-    </ul>
+
+    <table th:each="job : ${jobs}" class="job-listing">
+        <tr>
+            <td>Position Type</td><td th:text="${job['position type']}"></td>
+        </tr>
+        <tr>
+            <td>Name</td><td th:text="${job['name']}"></td>
+        </tr>
+        <tr>
+            <td>Employer</td><td th:text="${job['employer']}"></td>
+        </tr>
+        <tr>
+            <td>Location</td><td th:text="${job['location']}"></td>
+        </tr>
+        <tr>
+            <td>Core Competency</td><td th:text="${job['core competency']}"></td>
+        </tr>
+    </table>
+
+    <table>
+        <tr th:each="job, idx : ${jobs}" th:class="${idx.odd} ? 'odd'">
+            <!--
+            <td><a th:href="@{/list/jobs(column=${column},value=${item})}" th:text="${item}"></a></td>
+            <td> <span th:text="${item}"></span></td>
+            -->
+            <td>
+            <span th:text="${job['name']}"></span> :
+            <span th:text="${job['position type']}"></span> ::
+            <span th:text="${job['employer']}"></span>,
+            <span th:text="${job['location']}"></span>
+            [ <span th:text="${job['core competency']}"></span> ]
+            </td>
+        </tr>
+    </table>
+
 
 </div>
 

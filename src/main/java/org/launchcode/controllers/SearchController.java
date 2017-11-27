@@ -28,14 +28,30 @@ public class SearchController {
     @RequestMapping( value="results" )
     public String results( Model model, @RequestParam String searchType, @RequestParam String searchTerm ) {
         String strSearchType = new String();
-        ArrayList<HashMap<String,String>> alResults = JobData.findAll();
+        ArrayList<HashMap<String,String>> alResults;
+
+        if( searchType == "all" ) {
+            alResults = JobData.findByValue( searchTerm );
+        } else {
+            alResults = JobData.findByColumnAndValue( searchType, searchTerm );
+
+        }
+
         model.addAttribute("columns", ListController.columnChoices);
         model.addAttribute( "jobs", alResults );
 
-        String strResTitle = "Showing %d Results for \"%s\" in %s.";
+        String strResTitle = "%d Result";
+        if( alResults.size() != 1 ) {
+            strResTitle += "s";
+        }
+        strResTitle += " for \"%s\" in `%s`.";
         switch(searchType) {
-            case "Position":
-            case "All":
+            case "all":
+            case "position type":
+            case "employer":
+            case "location":
+            case "core competency":
+
                 strSearchType = searchType;
                 break;
             default:
