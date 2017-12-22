@@ -12,6 +12,20 @@
 
     <!-- TODO #3 - Use the same list display from search.html -->
 
+
+    <div th:if="${jobs} and ${jobs.size()}">
+        <h2 th:text="${jobs.size()} + ' Result(s)'"></h2>
+
+        <div th:each="job: ${jobs}">
+            <table class="job-listing">
+                <tr th:each="item, idx: ${job}" th:class="${idx.odd} ? 'odd'">
+                    <td th:text="${item.key}"></td>
+                    <td th:text="${item.value}"></td>
+                </tr></table>
+        </div>
+
+    </div>
+
 </div>
 
 </body>
