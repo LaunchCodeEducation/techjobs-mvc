@@ -28,4 +28,20 @@
     </div>
 
 </body>
+
+<h3 th:fragment="results-tally" th:text="${jobs.size()} + ' Result(s)'"></h3>
+
+<table th:fragment="job-table" class="job-listing" th:each="job : ${jobs}">
+    <tbody>
+    <div th:if="${job} == 'null'"> -- </div>
+    <div th:if="${job} != 'null'"></div>
+
+    <tr th:each="jobEntry: ${job}">
+        <td class = "first-child" th:text="${#strings.capitalizeWords(jobEntry.key)}"></td>
+        <td class = "last-child"  th:text="${jobEntry.value}"></td>
+    </tr>
+
+    </tbody>
+</table>
+
 </html>
