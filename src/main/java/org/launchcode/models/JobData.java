@@ -41,6 +41,7 @@ public class JobData {
 
             if (!values.contains(aValue)) {
                 values.add(aValue);
+
             }
         }
 

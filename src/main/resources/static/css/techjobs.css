@@ -24,6 +24,11 @@ table.job-listing td:last-child {
     width: 80%;
 }
 
+table.job-listing td:blank_row {
+    height: 50% !important; /* overwrites any other rules */
+    background-color: #FFFFFF;
+}
+
 label {
     margin-right: 15px;
 }
