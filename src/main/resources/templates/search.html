@@ -10,7 +10,9 @@
 
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
-    <form th:action="@{/search/results}">
+
+
+    <form th:action="@{/search/results}" method="post">
         <h2>Search by:</h2>
 
         <p>

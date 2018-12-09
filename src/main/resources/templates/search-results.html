@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+
+
+    <!--<h1 th:text="${#strings.capitalizeWords(title)}"></h1>-->
+    <h2 th:if="${negativeSearchResult}" th:text="${negativeSearchResult}"></h2>
+    <th:block th:if="${jobsResults}">
+    <h2 >Search Results:</h2>
+        <th:block th:each="jobListing : ${jobsResults}">
+            <ul>
+                <li>
+            <th:block th:each="field : ${jobListing}">
+
+                     <strong><span th:text=" ${field.key.substring(0,1).toUpperCase()} + ${field.key.substring(1).toLowerCase()} + ': '">
+                     </span></strong><span th:text="${field.value}"></span><br />
+
+            </th:block>
+               </li>
+            </ul>
+
+        </th:block>
+
+
+
+    </th:block>
+
+
+
+    <hr />
+
+
+</div>
+
+</body>
+</html>
