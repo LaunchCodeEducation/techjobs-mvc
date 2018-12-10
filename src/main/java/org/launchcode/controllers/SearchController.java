@@ -16,7 +16,7 @@ import java.util.HashMap;
  */
 @Controller
 @RequestMapping("search")
-public class SearchController {
+public class SearchController extends TechJobsController {
 
     static String negativeSearchResult;
     static ArrayList<HashMap<String, String>> jobsResults = new ArrayList<>();
