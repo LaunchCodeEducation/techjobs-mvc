@@ -35,7 +35,8 @@
                 <table class="job-listing">
                     <tr th:each="field, idx : ${jobListing}" th:class="${idx.odd} ? 'odd'">
                         <td th:text="${field.key} + ': '"></td>
-                        <td th:text="${field.value}"></td>
+                        <td th:unless="${field.key} == 'name'"><a th:href="@{/list/jobs(column=${field.key}, value=${field.value})}" th:text="${field.value}"></a></td>
+                        <td th:if="${field.key} == 'name'" th:text="${field.value}"></td>
                     </tr>
                 </table>
 
