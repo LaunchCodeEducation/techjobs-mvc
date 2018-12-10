@@ -24,7 +24,6 @@ public class SearchController extends TechJobsController {
 
     @RequestMapping(value = "")
     public String search(Model model) {
-        model.addAttribute("columns", ListController.columnChoices);
         model.addAttribute("title", "Search");
         model.addAttribute("checked", "all");
         return "search";
@@ -32,14 +31,12 @@ public class SearchController extends TechJobsController {
 
     @RequestMapping(value = "/results", method = RequestMethod.GET)
     public String redirectToSearch(Model model) {
-        model.addAttribute("columns", ListController.columnChoices);
         model.addAttribute("title", "Search");
         return "redirect:";
     }
 
     @RequestMapping(value = "/results", method = RequestMethod.POST)
     public String processSearchRequest(@RequestParam String searchType, @RequestParam String searchTerm, Model model) {
-        model.addAttribute("columns", ListController.columnChoices);
         model.addAttribute("title", "Search");
         model.addAttribute("checked", searchType);
         if (searchType.equals("all")) {
