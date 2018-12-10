@@ -26,6 +26,7 @@ public class SearchController {
     public String search(Model model) {
         model.addAttribute("columns", ListController.columnChoices);
         model.addAttribute("title", "Search");
+        model.addAttribute("checked", "all");
         return "search";
     }
 
@@ -40,6 +41,7 @@ public class SearchController {
     public String processSearchRequest(@RequestParam String searchType, @RequestParam String searchTerm, Model model) {
         model.addAttribute("columns", ListController.columnChoices);
         model.addAttribute("title", "Search");
+        model.addAttribute("checked", searchType);
         if (searchType.equals("all")) {
             if (JobData.findByValue(searchTerm).isEmpty()) {
                 negativeSearchResult = "No matching jobs";
@@ -59,6 +61,7 @@ public class SearchController {
             } else {
                 jobsResults = JobData.findByColumnAndValue(searchType, searchTerm);
                 model.addAttribute("jobsResults", jobsResults);
+
                 return "search";
             }
         }
