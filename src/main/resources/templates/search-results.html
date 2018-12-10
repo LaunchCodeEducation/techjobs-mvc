@@ -8,33 +8,38 @@
 
 <div class="container body-content">
 
-
-    <!--<h1 th:text="${#strings.capitalizeWords(title)}"></h1>-->
-    <h2 th:if="${negativeSearchResult}" th:text="${negativeSearchResult}"></h2>
-    <th:block th:if="${jobsResults}">
-    <h2 >Search Results:</h2>
-        <th:block th:each="jobListing : ${jobsResults}">
-            <ul>
-                <li>
-            <th:block th:each="field : ${jobListing}">
-
-                     <strong><span th:text=" ${field.key.substring(0,1).toUpperCase()} + ${field.key.substring(1).toLowerCase()} + ': '">
-                     </span></strong><span th:text="${field.value}"></span><br />
-
-            </th:block>
-               </li>
-            </ul>
-
-        </th:block>
+    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
 
 
-    </th:block>
+    <form action="/search/results" method="post">
+        <h2>Search by:</h2>
 
+        <p>
+            <span th:each="column : ${columns}">
+                <input
+                        type="radio"
+                        name="searchType"
+                        th:id="${column.key}"
+                        th:value="${column.key}"
+                        th:checked="${column.key == 'all'}"/>
+                <label th:for="${column.key}" th:text="${column.value}"></label>
+            </span>
 
+        </p>
+
+        <p>
+            <label for="searchTerm">Keyword:</label>
+            <input type="text" name="searchTerm" id="searchTerm" />
+        </p>
+
+        <input type="submit" value="Search" />
+    </form>
 
     <hr />
 
+    <h3 th:if="${negativeSearchResult}" th:text="${negativeSearchResult}"></h3>
+    <div th:replace="fragments :: job-listings"></div>
 
 </div>
 

@@ -24,6 +24,21 @@ table.job-listing td:last-child {
     width: 80%;
 }
 
+table.search-results {
+    margin-bottom: 30px;
+    border: 1px black dotted;
+
+}
+table.search-results td:first-child {
+    font-weight: bold;
+    text-transform: capitalize;
+
+}
+
+table.search-results td:last-child {
+    width:80%;
+}
+
 label {
     margin-right: 15px;
 }

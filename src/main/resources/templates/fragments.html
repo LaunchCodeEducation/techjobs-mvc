@@ -26,6 +26,26 @@
             </div>
         </div>
     </div>
+    <div th:fragment="job-listings">
+        <th:block th:if="${jobsResults} and ${jobsResults.size()}">
+
+            <h3 th:text="${jobsResults.size()} + ' Result(s): '"></h3>
+
+            <th:block th:each="jobListing : ${jobsResults}">
+                <table class="job-listing">
+                    <tr th:each="field, idx : ${jobListing}" th:class="${idx.odd} ? 'odd'">
+                        <td th:text="${field.key} + ': '"></td>
+                        <td th:text="${field.value}"></td>
+                    </tr>
+                </table>
+
+            </th:block>
+
+
+
+
+        </th:block>
+    </div>
 
 </body>
 </html>

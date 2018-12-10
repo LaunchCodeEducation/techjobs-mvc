@@ -12,7 +12,7 @@
 
 
 
-    <form th:action="@{/search/results}" method="post">
+    <form action="/search/results" method="post">
         <h2>Search by:</h2>
 
         <p>
@@ -38,7 +38,11 @@
 
     <hr />
 
-    <!-- TODO #2 - Loop over jobs map to display all job fields -->
+    <h2 th:if="${negativeSearchResult}" th:text="${negativeSearchResult}"></h2>
+    <div th:replace="fragments :: job-listings"></div>
+
+
+
 
 </div>
 
