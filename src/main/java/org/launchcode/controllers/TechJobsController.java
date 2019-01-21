@@ -7,7 +7,6 @@ import java.util.HashMap;
 public class TechJobsController {
 
     static HashMap<String, String> actionChoices = new HashMap<>();
-
     static HashMap<String, String> columnChoices = new HashMap<>();
 
     public TechJobsController () {
@@ -18,6 +17,7 @@ public class TechJobsController {
         columnChoices.put("employer", "Employer");
         columnChoices.put("location", "Location");
         columnChoices.put("position type", "Position Type");
+        columnChoices.put("all", "All");
 
     }
 
